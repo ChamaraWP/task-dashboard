@@ -1,8 +1,14 @@
 <div class="container view-task-container">
-    <div class="col-md-8">
-        <h2>Task Title</h2>
-        <p class="sheduled-time mb-3">Scheduled @ 2020-10-5</p>
-        <p>description</p>
-        <button type="button" class="btn btn-primary">Back</button>
-    </div>
+  <div class="col-md-8">
+    <h2>{{ taskObject?.title }}</h2>
+    <p class="sheduled-time mb-3">Scheduled @ {{ taskObject?.schedule }}</p>
+    <p>{{ taskObject?.description }}</p>
+    <button type="button" class="btn btn-primary" [routerLink]="['/']">
+      Back
+    </button>
+  </div>
+</div>
+
+<div class="some-thing-went wrong" class="error-msg" *ngIf="hasError">
+  <p>Something went wrong :(</p>
 </div>

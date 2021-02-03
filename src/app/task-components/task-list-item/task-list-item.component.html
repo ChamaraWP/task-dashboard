@@ -1,8 +1,8 @@
 <div class="task-list-item" (click)="onItemClick()">
-    <h6>Task name</h6>
-    <p class="description">brief description</p>
-    <div class="d-flex bottom-section">
-        <p class="time">2020.10.2 8.30AM</p>
-        <p class="view-task" (click)="onViewTask()">View</p>
-    </div>
+  <h6>{{ taskData.title }}</h6>
+  <p class="description">{{ taskData.description | ellipsis: "42" }}</p>
+  <div class="d-flex bottom-section">
+    <p class="time">{{ taskData.schedule }}</p>
+    <p class="view-task" (click)="onViewTask()">View</p>
+  </div>
 </div>

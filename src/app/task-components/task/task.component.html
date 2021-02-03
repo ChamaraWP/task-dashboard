@@ -1,51 +1,77 @@
 <div class="container create-edit-task-container">
-    <div class="creat-task-container" *ngIf="false">
+    <div class="creat-task-container" *ngIf="this.taskId === '' ">
         <h2>Create Task</h2>
-        <form class="my-4">
+        <form [formGroup]="createTaskForm" class="my-4" (ngSubmit)="createFormSubmit(createTaskForm.value)">
             <div class="row">
                 <div class="form-group col-md-5">
                   <label for="taskTitle">Task Title</label>
-                  <input type="text" class="form-control" id="taskTitle" >
+                  <input formControlName="title" type="text" class="form-control" id="taskTitle" >
+                  <div class="error-container" *ngIf="createTaskForm.get('title')?.touched || createTaskForm.get('title')?.dirty">
+                       <div style="color:'red';font-size:0.9rem" *ngIf="createTaskForm.get('title')?.hasError('required')">
+                                Title is Required
+                       </div>
+                  </div>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="schedule">Schedule</label>
-                    <input type="text" class="form-control" id="schedule" >
+                    <input formControlName="schedule" type="text" class="form-control" id="schedule" >
+                    <div class="error-container" *ngIf="createTaskForm.get('schedule')?.touched || createTaskForm.get('schedule')?.dirty">
+                        <div style="color:'red';font-size:0.9rem" *ngIf="createTaskForm.get('schedule')?.hasError('required')">
+                            Schedule is Required
+                        </div>
+                   </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-8">
                     <label for="task-descrition">Task Description</label>
-                    <textarea class="form-control" id="task-descrition" rows="3"></textarea>
+                    <textarea formControlName="description" class="form-control" id="task-descrition" rows="3"></textarea>
+                    <div class="error-container" *ngIf="createTaskForm.get('description')?.touched || createTaskForm.get('description')?.dirty">
+                        <div style="color:'red';font-size:0.9rem" *ngIf="createTaskForm.get('description')?.hasError('required')">
+                            Description is Required
+                        </div>
+                   </div>
                 </div>
             </div>
             <div class="d-flex justify-content-end col-md-8 my-3">
-                <button type="submit" class="btn btn-primary" (click)="createTask()"> Create Task</button>
+                <button  type="submit" class="btn btn-primary" [disabled]="isSubmitting"> Create Task</button>
             </div>
             
         </form>
     </div>
 
 
-    <div class="edit-task-container">
+    <div class="edit-task-container" *ngIf="this.taskId != '' ">
         <h2>Edit Task</h2>
-        <form class="my-4">
-            <div class="row">
-                <div class="col-md-5 d-flex align-items-center mb-0">
-                  <p class="task-title"> Task title comes here</p>
-                </div>
-                <div class="form-group col-md-3">
+        <form [formGroup]="editTaskForm" class="my-4" (ngSubmit)="editFormSubmit(editTaskForm.value)">
+            <div class="col-md-5 d-flex align-items-center mb-0 pl-0">
+                  <p class="task-title"> {{this.taskToEdit?.title}}e</p>
+           </div>
+          <div class="form-group col-md-4 pl-0">
                     <label for="schedule">Schedule</label>
-                    <input type="text" class="form-control" id="schedule" >
-                </div>
-            </div>
+                    <input formControlName="schedule" type="text" class="form-control" id="schedule" >
+                    <div class="error-container" *ngIf="editTaskForm.get('schedule')?.touched || editTaskForm.get('schedule')?.dirty">
+                        <div style="color:'red';font-size:0.9rem" *ngIf="editTaskForm.get('schedule')?.hasError('required')">
+                            Schedule is Required
+                        </div>
+                   </div>
+          </div>
+            
             <div class="row">
                 <div class="form-group col-md-8">
                     <label for="task-descrition">Task Description</label>
-                    <textarea class="form-control" id="task-descrition" rows="3"></textarea>
+                    <textarea formControlName="description" class="form-control" id="task-descrition" rows="3"></textarea>
+                    <div class="error-container" *ngIf="editTaskForm.get('description')?.touched || editTaskForm.get('description')?.dirty">
+                        <div style="color:'red';font-size:0.9rem" *ngIf="editTaskForm.get('description')?.hasError('required')">
+                            Description is Required
+                        </div>
+                   </div>
                 </div>
             </div>
+
             <div class="d-flex justify-content-end col-md-8 my-3">
-                <button type="submit" class="btn btn-primary" (click)="editTask()"> Edit Task</button>
+                <button type="button" class="btn btn-warning mr-3" (click)="deleteTask()" [disabled]="isSubmitting"> Delete Task</button>
+                <button type="submit" class="btn btn-primary" [disabled]="isSubmitting"> Edit Task</button>
             </div>
             
         </form>

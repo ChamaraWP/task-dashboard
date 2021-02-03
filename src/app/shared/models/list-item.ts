@@ -1,7 +1,6 @@
 export interface ListItem {
-    id:number,
-    title:string,
+    _id?:number,
+    title?:string,
     description:string,
-    type:string,
-    date:string | Date;
+    schedule:string | Date;
 }
