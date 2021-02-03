@@ -1,0 +1,16 @@
+<div class="container task-list-container">
+ <div class="d-flex">
+    <h2>Task List</h2>
+    <div>Weather data coming here</div>
+ </div>
+ <div class="d-flex search-task-container">
+    <div class="form-group w-50 mr-4">
+        <input type="text" class="form-control" id="search-task-input" aria-describedby="searchTask" placeholder="Search Task">
+    </div>
+      <!-- <button type="submit" class="btn btn-primary" >Create Task</button> -->
+      <button type="submit" class="btn btn-primary" (click)="navigateToCreateTaskList()"> Create Task</button>
+ </div>
+ <div class="task-list-wrapper">
+   <app-task-list-item (clickItem)="onItemClickHandler()"  (viewSpecificTask)="onViewSpecifTaskHandler()" *ngFor="let item of [1,2,5,5,8,8]"></app-task-list-item>
+ </div>
+</div>

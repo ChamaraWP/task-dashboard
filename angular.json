@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "task-dashboard"
+  "defaultProject": "task-dashboard",
+  "cli": {
+    "analytics": "c790b8fd-277c-4e5a-9a93-530710c29ce9"
+  }
 }
