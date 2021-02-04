@@ -14,6 +14,7 @@ export class TaskListComponent implements OnInit {
   filterInput: string;
   hasError: boolean = false;
   weatherData:any;
+  weatherDataError:boolean = false;
 
   constructor(private router: Router, private taskService: TaskService,private weatherService:WeatherService) {}
 
@@ -26,7 +27,7 @@ export class TaskListComponent implements OnInit {
     this.taskService.loadTaskList().subscribe((res) => {
       if (res.status === 200) this.taskList = res.data;
       if (res.status === 500) this.hasError = true;
-    });
+    },);
   }
 
   onItemClickHandler(id: string) {
@@ -44,6 +45,9 @@ export class TaskListComponent implements OnInit {
   getWeatherData(){
     this.weatherService.getWeather('New York').subscribe(data => {
       this.weatherData = data
+    },(err)=>{
+        if(err)
+          this.weatherDataError = true;
     })
   }
 }

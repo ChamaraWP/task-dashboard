@@ -2,17 +2,22 @@
   <div class="d-flex align-items-center justify-content-between w-50" >
     <h2>Task List</h2>
     <div class="ml-5 d-flex">
-      <div  class="mr-3">
-        <div>New York</div>
-        <p class="mb-0">{{weatherData?.location.localtime | date:'mediumDate'}}</p>
-      </div> 
-      <div class="mr-3">
-        <div>{{weatherData?.current.temp_f}}<span>&#8457;</span></div>
-        <p class="mb-0">{{weatherData?.current.condition.text}}</p>
-      </div> 
-      <div>
-        
-        <img src={{weatherData?.current.condition.icon}} alt="weatherIcon">
+      <div class="d-flex" *ngIf="!weatherDataError">
+        <div  class="mr-3">
+          <div>New York</div>
+          <p class="mb-0">{{weatherData?.location.localtime | date:'mediumDate'}}</p>
+        </div> 
+        <div class="mr-3">
+          <div>{{weatherData?.current.temp_f}}<span>&#8457;</span></div>
+          <p class="mb-0">{{weatherData?.current.condition.text}}</p>
+        </div> 
+        <div>
+          
+          <img src={{weatherData?.current.condition.icon}} alt="weatherIcon">
+        </div>
+      </div>
+      <div *ngIf="weatherDataError">
+          <p class="mb-0">An Error occurred while fetching wether data</p>
       </div>
     </div>
   </div>
