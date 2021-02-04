@@ -10,7 +10,10 @@ export const environment = {
     getOneTask:'tasks/view/{taskId}',
     updateTask:'tasks/update/{taskId}',
     deleteTask:'tasks/delete/{taskId}'
-  }
+  },
+
+  //for the time being im gonna use API key here
+  weatherEndpoint:'http://api.weatherapi.com/v1/current.json?key=7037b45456fa426697550441210402&q='
 };
 
 /*
