@@ -3,6 +3,6 @@
   <p class="description">{{ taskData.description | ellipsis: "42" }}</p>
   <div class="d-flex bottom-section">
     <p class="time">{{ taskData.schedule }}</p>
-    <p class="view-task" (click)="onViewTask()">View</p>
+    <p class="edit-task" (click)="onEditTask()">Edit</p>
   </div>
 </div>

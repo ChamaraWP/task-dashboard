@@ -24,22 +24,28 @@ export class TaskListComponent implements OnInit {
   }
 
   loadTaskList(){
-    this.taskService.loadTaskList().subscribe((res) => {
-      if (res.status === 200) this.taskList = res.data;
-      if (res.status === 500) this.hasError = true;
-    },);
+    this.taskService.loadTaskList().subscribe(
+      (res) => {
+        if (res.status === 200) this.taskList = res.data;
+      },
+      (err) => {
+        if (err.error.status === 500) {
+          this.hasError = true;
+        }
+      }
+    );
   }
 
   onItemClickHandler(id: string) {
-    this.router.navigate(['./task', id]);
+    this.router.navigate(['./task-view', id]);
   }
 
   navigateToCreateTaskList() {
     this.router.navigate(['./task']);
   }
 
-  onViewSpecifTaskHandler(id: string) {
-    this.router.navigate(['./task-view', id]);
+  onEditTaskHandler(id: string) {
+    this.router.navigate(['./task', id]);
   }
 
   getWeatherData(){

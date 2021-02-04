@@ -26,14 +26,18 @@ export class ViewTaskComponent implements OnInit {
   }
 
   getTasks() {
-    this.taskService.getTask(this.taskId).subscribe((res: any) => {
-      if (res.status === 200) {
-        this.taskObject = res.data;
+    this.taskService.getTask(this.taskId).subscribe(
+      (res: any) => {
+        if (res.status === 200) {
+          this.taskObject = res.data;
+        }
+      },
+      (err) => {
+        if (err.error.status === 500) {
+          this.hasError = true;
+        }
       }
-      if (res.status === 500) {
-        this.hasError = true;
-      }
-    });
+    );
   }
 
   getPathParams() {
