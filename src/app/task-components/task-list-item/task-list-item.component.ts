@@ -10,7 +10,7 @@ import { ListItem } from 'src/app/shared/models/list-item';
 export class TaskListItemComponent implements OnInit {
   @Input() taskData: ListItem;
   @Output() clickItem = new EventEmitter();
-  @Output() viewSpecificTask = new EventEmitter();
+  @Output() editTask = new EventEmitter();
 
   constructor() {}
 
@@ -20,7 +20,7 @@ export class TaskListItemComponent implements OnInit {
     this.clickItem.emit(this.taskData._id);
   }
 
-  onViewTask() {
-    this.viewSpecificTask.emit(this.taskData._id);
+  onEditTask() {
+    this.editTask.emit(this.taskData._id);
   }
 }

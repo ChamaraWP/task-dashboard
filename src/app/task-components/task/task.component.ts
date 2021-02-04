@@ -57,10 +57,13 @@ export class TaskComponent implements OnInit {
         console.log(response.status === 201);
         if (response.status === 201)
           this.showSuccessToast('Task has been saved successfully');
-        if (response.status === 500) this.showFailedToast();
 
         this.isSubmitting = false;
         this.router.navigate(['']);
+      },(err)=> {
+        if (err.error.status === 500) {
+          this.showFailedToast();
+        }
       });
     }
   }
@@ -74,11 +77,12 @@ export class TaskComponent implements OnInit {
         if (res.status === 200) {
           this.showSuccessToast('Task updated');
         }
-        if (res.status === 500) {
-          this.showFailedToast();
-        }
         this.isSubmitting = false;
         this.router.navigate(['']);
+      },(err)=> {
+        if (err.error.status === 500) {
+          this.showFailedToast();
+        }
       });
     }
   }
@@ -87,12 +91,14 @@ export class TaskComponent implements OnInit {
     this.taskService.deleteTask(this.taskId).subscribe((res) => {
       if (res.status === 200) {
         this.showSuccessToast('Task deleted');
+        this.router.navigate(['']);
       }
-      if (res.status === 500) {
+    },(err)=> {
+      if (err.error.status === 500) {
         this.showFailedToast();
       }
     });
-    this.router.navigate(['']);
+    
   }
 
   checkErrorsOnSubmit(form: FormGroup) {

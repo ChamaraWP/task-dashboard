@@ -1,4 +1,4 @@
-<div class="container view-task-container">
+<div class="container view-task-container" *ngIf="!hasError">
   <div class="col-md-8">
     <h2>{{ taskObject?.title }}</h2>
     <p class="sheduled-time mb-3">Scheduled @ {{ taskObject?.schedule }}</p>
@@ -9,6 +9,7 @@
   </div>
 </div>
 
-<div class="some-thing-went wrong" class="error-msg" *ngIf="hasError">
+<div  class="error-msg" *ngIf="hasError">
   <p>Something went wrong :(</p>
+  <small>This error might be occurs when there is no matching record.</small>
 </div>
