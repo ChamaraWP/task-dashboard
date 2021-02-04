@@ -34,7 +34,7 @@ export class TaskService {
       '{taskId}',
       taskId.toString()
     );
-    return this.httpClient.put(endpoint, requestPayload);
+    return this.httpClient.patch(endpoint, requestPayload);
   }
 
   deleteTask(taskId: string): Observable<any> {
